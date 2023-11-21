@@ -16,6 +16,20 @@
       font-size: 100%;
     }
 
+
+
+    #drop-area {
+      border: 3px dashed #72898F;
+      background-color: #2D5B69;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    #drop-area.highlight {
+      border-color: #EBC13D;
+    }
+
     input {
       border: 1px solid #75B938;
       background: #2D5B69;
@@ -66,38 +80,18 @@
     }
     .bigbutty {
       background: #184956;
-      border: 3px solid #DBB32D;
-      color: #DBB32D;
+      border: 3px solid #AF88EB;
+      color: #AF88EB;
       font-family: monospace;
       font-size-adjust: +1.2;
     }
 
-    .bigbutty:hover {
+    .bigbutty:hover, .bigbutty:active {
       background: #2D5B69;
-      border: 3px solid #EBC13D;
-      color: #EBC13D;
+      border: 3px solid #BD96FA;
+      color: #BD96FA;
       font-family: monospace;
       font-size-adjust: +1.2;
-    }
-
-    .bigbutty:active {
-      background: #184956;
-      border: 3px solid #EBC13D;
-      color: #EBC13D;
-      font-family: monospace;
-      font-size-adjust: +1.2;
-    }
-
-    #drop-area {
-      border: 3px dashed #72898F;
-      background-color: #2D5B69;
-      border-radius: 8px;
-      padding: 20px;
-      text-align: center;
-    }
-
-    #drop-area.highlight {
-      border-color: #EBC13D;
     }
 
     .piccy {
@@ -226,7 +220,7 @@
   <br/>
   <div id="estimate" class="piccydiv estimate"><span id="eqstimate" class="dim_0 plusone">▷</span><span id="framestimate">&ndash;</span>&nbsp;frames&nbsp;·&nbsp;<span id="secondstimate">&ndash;</span>&nbsp;seconds</div></center>
   <center>
-  <div id="estimate" class="piccydiv progress"><span id="prog1">&ndash;&ndash;&ndash;&ndash;</span>&nbsp;<span id="prog2">&ndash;&ndash;&ndash;&ndash;</span></div></center>
+  <div id="estimate" class="piccydiv progress"><span id="prog1">&ndash;&ndash;&ndash;&ndash;</span><span class="plusone">&nbsp;</span><span id="prog2">&ndash;&ndash;&ndash;&ndash;</span></div></center>
 </div>
 <br/><br/>
 <div>
@@ -379,10 +373,10 @@
     console.log(every % dim);
 
     // ▷▶
-    var classu = "orange";
+    var classu = "yellow";
     var eq = "▶";
     if ((dim % every) != 0){
-      classu = "blue";
+      classu = "fg_0";
       eq = "▷";
     }
     if (every > dim) {
