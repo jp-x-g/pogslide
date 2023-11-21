@@ -408,22 +408,32 @@
     // Get the original image element
     var piccy = document.getElementById("piccy");
 
-    // Get the width of the original image
-    var itersLeft = piccy.width;
-
-    console.log("Iters left: " + String(itersLeft));
 
     // Create a canvas element to concatenate the image
     var concatCanvas = document.createElement("canvas");
     var concatCtx = concatCanvas.getContext("2d");
 
+    var itersLeft = 999;
+
     // Set the canvas size to accommodate two original images side by side
-    concatCanvas.width = piccy.width * 2;
-    concatCanvas.height = piccy.height;
+    if (["E", "W"].includes(direction)) {
+      concatCanvas.width = piccy.width * 2;
+      concatCanvas.height = piccy.height;
+      concatCtx.drawImage(piccy, 0, 0);
+      concatCtx.drawImage(piccy, piccy.width, 0);
+      itersLeft = piccy.width;
+    } 
+    if (["N", "S"].includes(direction)) {
+      concatCanvas.width = piccy.width;
+      concatCanvas.height = piccy.height * 2;
+      concatCtx.drawImage(piccy, 0, 0);
+      concatCtx.drawImage(piccy, 0, piccy.height);
+      itersLeft = piccy.height;
+    }
+
+    console.log("Iters left: " + String(itersLeft));
 
     // Draw the original image twice on the canvas
-    concatCtx.drawImage(piccy, 0, 0);
-    concatCtx.drawImage(piccy, piccy.width, 0);
 
     step = parseInt(document.getElementById("frameevery").value);
 
@@ -441,7 +451,11 @@
         canvas.height = piccy.height;
 
         // Draw the concatenated image onto the canvas, shifted to the left
-        ctx.drawImage(concatCanvas, -i, 0);
+        if(direction == "N") {ctx.drawImage(concatCanvas, 0, -i);}
+        if(direction == "S") {ctx.drawImage(concatCanvas, 0, (i-itersLeft));}
+
+        if(direction == "W") {ctx.drawImage(concatCanvas, -i, 0);}
+        if(direction == "E") {ctx.drawImage(concatCanvas, (i-itersLeft), 0);}
 
         // Set the source of the new image to the canvas data URL
         shiftedPiccy.src = canvas.toDataURL();
