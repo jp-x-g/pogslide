@@ -479,6 +479,7 @@
     var gif = new GIF({
       workers: 6,
       quality: 10,
+      transparent: 'rgba(0,0,0,0)',
       workerScript: URL.createObjectURL(new Blob([workerScriptContent], { type: 'application/javascript' }))
     });
     var frames = document.getElementById("piccydiv2").children;
