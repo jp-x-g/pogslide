@@ -164,7 +164,35 @@
       color: #2D5B69;
       background: #75B938;
     }
-    
+
+    .plusone {
+      font-size: 150%;
+          }
+    /* Selenized Dark */
+
+    .bg_0 {color: #103C48;}
+    .bg_1 {color: #184956;}
+    .bg_2 {color: #2D5B69;}
+    .dim_0 {color: #72898F;}
+    .fg_0 {color: #ADBCBC;}
+    .fg_1 {color: #CAD8D9;}
+
+    .red { color: #FA5750;}
+    .green { color: #75B938;}
+    .yellow { color: #DBB32D;}
+    .blue { color: #4695F7;}
+    .magenta { color: #F275BE;}
+    .cyan { color: #41C7B9;}
+    .orange { color: #ED8649;}
+    .violet { color: #AF88EB;}
+    .br_red { color: #FF665C;}
+    .br_green { color: #84C747;}
+    .br_yellow { color: #EBC13D;}
+    .br_blue { color: #58A3FF;}
+    .br_magenta { color: #FF84CD;}
+    .br_cyan { color: #53D6C7;}
+    .br_orange { color: #FD9456;}
+    .br_violet { color: #BD96FA;}
     
   </style>
   <!--<script src="https://cdn.jsdelivr.net/npm/gif.js@0.2.0/dist/gif.js"></script>-->
@@ -196,7 +224,7 @@
   <br/>
   This will be:
   <br/>
-  <div id="estimate" class="piccydiv estimate"><span id="framestimate">&ndash;</span>&nbsp;frames&nbsp;·&nbsp;<span id="secondstimate">&ndash;</span>&nbsp;seconds</div></center>
+  <div id="estimate" class="piccydiv estimate"><span id="eqstimate" class="dim_0 plusone">▷</span><span id="framestimate">&ndash;</span>&nbsp;frames&nbsp;·&nbsp;<span id="secondstimate">&ndash;</span>&nbsp;seconds</div></center>
   <center>
   <div id="estimate" class="piccydiv progress"><span id="prog1">&ndash;&ndash;&ndash;&ndash;</span>&nbsp;<span id="prog2">&ndash;&ndash;&ndash;&ndash;</span></div></center>
 </div>
@@ -221,7 +249,7 @@
 </div>
 <div>
   <br/><br/>
-  <center><div id="piccydiv" class="piccydiv"><div id="piccyInfo" class="piccyInfo">&ndash;&ndash; bytes, &ndash; × &ndash;</div></div></center>
+  <center><div id="piccydiv" class="piccydiv"><div id="piccyInfo" class="piccyInfo"><span id="infowidth">&ndash;&ndash;</span> × <span id="height">&ndash;&ndash;</span>&nbsp;·&nbsp;<span id="infobytes">&ndash;&ndash;</span> bytes</div></center>
 </div>
 <div><br/><br/>
   <center><div id="piccydiv2" class="piccydiv2"></div></center>
@@ -347,9 +375,27 @@
     frames = Math.round(frames)
     seconds = seconds.toFixed(2)
 
+
+    console.log(every % dim);
+
+    // ▷▶
+    var classu = "orange";
+    var eq = "▶";
+    if ((dim % every) != 0){
+      classu = "blue";
+      eq = "▷";
+    }
+    if (every > dim) {
+      classu = "red";
+      eq = "⨂";
+    }
+    // ≈ ≠ = ➤
+    document.getElementById("eqstimate").innerHTML = eq;
+    document.getElementById("eqstimate").classList = ["plusone"];
+    document.getElementById("eqstimate").classList.add(classu);
     document.getElementById("framestimate").innerHTML = String(frames).padStart(5, " ");
     document.getElementById("secondstimate").innerHTML = String(seconds).padStart(5, " ");
-  }
+  } 
 
 
 
